@@ -5,10 +5,10 @@ import time
 import sys
 import paramiko
 
-def ssh_to_ras(ras_ip,port,username,passwd):
+def ssh_to_ras(ip,port,username,passwd):
     ss = paramiko.SSHClient()
     ss.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    ss.connect(ras_ip,port,username,passwd)
+    ss.connect(ip,port,username,passwd)
     stdin, stdout1, stderr = ss.exec_command ('pwd') 
     setdns_command = "sudo tee /etc/resolv.conf  <<< 'nameserver 114.114.114.114' "
     stdin3, stdout3, stderr = ss.exec_command(setdns_command,get_pty=True )
@@ -24,11 +24,11 @@ def ssh_to_ras(ras_ip,port,username,passwd):
 
     
 if __name__ == "__main__":
-    ras_ip = '10.10.32.190'
-    port = '20160'
-    username = 'riversec'
-    passwd = 'Rshbtx@16!'
+    ip = ''
+    port = ''
+    username = ''
+    passwd = ''
     dir_path = os.getcwd()
-    ssh_to_ras(ras_ip,port,username,passwd)
+    ssh_to_ras(ip,port,username,passwd)
      
     
